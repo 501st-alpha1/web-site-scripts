@@ -1,10 +1,8 @@
 var cont = true;
+var myDiv;
 
-function loadJokesSet(num) {
-  var myDiv = document.getElementById("jokes");
-  var xmlhttp;
-  var url;
-  var response;
+function loadFirstSet() {
+  myDiv = document.getElementById("jokes");
   var loading = document.createElement('p');
   var loadingGif = document.createElement('img');
 
@@ -17,13 +15,22 @@ function loadJokesSet(num) {
   loading.appendChild(document.createTextNode("Loading, please wait..."));
   loading.appendChild(loadingGif);
 
-  if (num === 0) {
-    myDiv.removeChild(myDiv.childNodes[0]);
-    myDiv.appendChild(loading);
-  }
-  //if (num === 1) {
-  //  myDiv.removeChild(document.getElementById("loading"));
-  //}
+  myDiv.removeChild(myDiv.childNodes[0]);
+  myDiv.appendChild(loading);
+
+  loadJokesSet(0);
+}
+
+function loadSecondSet() {
+  loadJokesSet(1);
+
+  myDiv.removeChild(document.getElementById("loading"));
+}
+
+function loadJokesSet(num) {
+  var xmlhttp;
+  var url;
+  var response;
 
   if (window.XMLHttpRequest) {
     xmlhttp = new XMLHttpRequest();
@@ -49,7 +56,10 @@ function loadJokesSet(num) {
 }
 
 function loadJokes() {
-  for (var i=0; i < 22; i++) {
+  loadFirstSet();
+//  loadSecondSet();
+  for (var i=1; i < 22; i++) {
     loadJokesSet(i);
   }
+  myDiv.removeChild(document.getElementById("loading"));
 }
