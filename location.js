@@ -15,16 +15,16 @@ function getLocation() {
         heirarchy[i].slice(1);
   }
 
-  div.innerHTML = "Location: / <a href=\"/index.shtml\">Home</a>";
+  div.innerHTML = "Location: / <a href=\"/index.php\">Home</a>";
 
   while (heirarchy.length > 1) {
     div.innerHTML = div.innerHTML + " / <a href=\"/" + heirarchy[0] +
-        ".shtml\">" + title[0] + "</a>";
+        ".php\">" + title[0] + "</a>";
     heirarchy[1] = heirarchy[0] + "/" + heirarchy[1];
     heirarchy.shift();
     title.shift();
   }
 
   div.innerHTML = div.innerHTML + "/ <a href=\"/" + heirarchy[0] +
-      ".shtml\">" + title[0] + "</a>";
+      ".php\">" + title[0] + "</a>";
 }
